@@ -6,9 +6,11 @@
     <session-factory>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://172.17.0.1/VK</property>
+        <property name="hibernate.connection.url">jdbc:mysql://77.73.68.50/VK</property>
+<!--        <property name="hibernate.connection.url">jdbc:mysql://172.17.0.1/VK</property>-->
         <property name="hibernate.connection.username">facebookserver</property>
-        <property name="hibernate.connection.password">facebookserverpass</property>
+        <property name="hibernate.connection.password">facebookserverremotepass</property>
+<!--        <property name="hibernate.connection.password">facebookserverpass</property>-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
     </session-factory>
