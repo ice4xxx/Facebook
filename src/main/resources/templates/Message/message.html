@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../static/css/message.css" th:href="@{/css/message.css}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="messages-div">
+    <table class="table message-table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">To</th>
+            <th scope="col">Text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message: ${outgoingMessages}">
+            <td th:text="${message.id}"></td>
+            <td th:text="${message.toUser}"></td>
+            <td th:text="${message.text}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table message-table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">From</th>
+            <th scope="col">Text</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="message: ${incomingMessages}">
+            <td th:text="${message.id}"></td>
+            <td th:text="${message.toUser}"></td>
+            <td th:text="${message.text}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="write-message-div">
+    <div class="collapsed-message-div" id="collapse-message">
+        <div>
+            <form th:action="@{/message/send}" th:object="${message}" method="post">
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">To</label>
+                    <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+                           th:field="*{toUser}">
+                    <div id="emailError" th:if="${#fields.hasErrors('toUser')}" th:errors="*{toUser}" class="form-text"
+                         style="color: red;"></div>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" name="text" placeholder="Type here" id="floatingTextarea2"
+                              style="max-height: 100px" th:field="*{text}"></textarea>
+                    <div id="textError" th:if="${#fields.hasErrors('text')}" th:errors="*{text}" class="form-text"
+                         style="color: red;"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+    <button class="btn btn-primary"
+            style="border-radius: 100%; height: 50px; width: 50px; font-size: 100%; text-align: center" type="button">+
+    </button>
+</div>
+
+<script>
+    var coll = document.getElementsByClassName("btn btn-primary");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.previousElementSibling;
+            if (content.style.maxHeight) {
+                content.style.padding = "20px"
+                content.style.opacity = "0";
+                content.style.maxHeight = null;
+            } else {
+                content.style.padding = "20px"
+                content.style.opacity = "1";
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+</body>
+</html>

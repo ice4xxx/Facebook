@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../static/css/sign.css" th:href="@{/css/sign.css}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+<div class="outer-div">
+    <div class="sign-box">
+        <form th:action="@{/login}" th:object="${user}" method="post"  >
+            <div class="mb-3">
+                <label for="loginInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="loginInput" th:field="*{email}">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{password}">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMeCheck">
+                <label class="form-check-label" for="rememberMeCheck">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+
+        <a href="/register">Register</a>
+    </div>
+</div>
+</body>
+</html>
